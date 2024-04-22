@@ -1,0 +1,32 @@
+language: python
+matrix:
+  include:
+  - python: '3.7'
+    dist: xenial
+    sudo: true
+  - name: 3.7 public
+    python: '3.7'
+  - name: 3.7 private
+    python: '3.7'
+    env:
+    - PRIVATE_ACCESS=1
+    - secure: IULfcDRlV6Q3G04BfPxNpwyj15cr0LwtqJxSayQrLctdE1Ss6ji8bCDiVs7bGQbsXWkNRL2T6WSFMTqgLVHKBcA0BVKQDFqPZM78uwMaz4VllSBlIPh2B8U5zsmNDe+KZ/eZ/mnPSJfy+8UIYIobtLgPWAZKK+EUVQdaxATPiL3PzRuRikuhvzwgtGUOUy899NuHgolU2br4VZa7w1FYYx6TIxBDCDFG17PS5VBu91JsSeIStmnN0man2kxWfe4TdJzhIz3OrdOstL44R4QXOYj3Ppa8k0FQ8J11VljvWKktmeoJzC4fsuRMM0dZuyvmITWoN3C9AcdJQDNxaHg+0eyxjyDG3/2yOxuO5cGJjCBDk80aPfd7uk7wStUFRdIVQGBxz0D8v5Zgey9BCYC/wRpzS3Q17yOxPqxjLTg89bGsJCSKhZYc/8RdfsdlZvf8Qb5qYpcloxMxPCFZW9xDrAM8TKiCKyQHiRBeEX6M8nBtJwGg8L2LXw9lXGyv7tREeIeucVDjMILOMWuGnIveh+w4BOwg8CkVP7eDf9GjQeLWBaA5P+9rkwPjkmoKTk+xlqT0u+BggHoWE2opi4pt++X1xtwftEdkIRuBb6iAIX+hErBT8ze2gkeMig72ZQAfLbANbuunbiNW2AmJh2fB2g5kaklYK+x0ywPw6xuDftg=
+    - secure: kgYmj7LhHuxSU6mAcpS6sXU+jMZp9VDaMl0GciNXw4k7IcBhdfGGizfJB2kalUhkLyjDIRfTAZ8Po5FOw7zbwPWR6pZguRV8AlULOvt99Yo+rGF22ZjjS9UpOVaPlpIDDNpyebhiXqJTxQCe+aXmZM5NZWbR3X0ljVK4FW9nUQjJtwHXiYYVooYUVIL0YHJqbeu04uVRHVURxl9ZtOWRPSpSSt7LkfYCstgRnknRCtvcfbgzWHhCAq3CyjbJLCjslyD/iHm90ALWJuOJ4sELh9EvzZagm7VUfSMjnJSI3dMoYhQxpJnmFgYgI2bQQfdhM+39cmzGptq1PkBdw+aUajT7G3IYYeVkIg3FAKBkjdtTI3Jv0D+WqGYoKgKRXnKNtd4/1NJoDsTtEwVURwnht8VbJuZ1OGPfuTtK4mf5xd/lOToRmge3kuuKkGNw9hXIdd+rzBFO2S/EijcrU5XA8SHy5iASRz7mUc0e/MYc4Tq9os724zSEXqAu1oCnQd/zjMJYV5Lqtdvlup12aQRarsRS5ZRg1YsKk2q1ApV2KucAAm7U106DQMNZLTw28ameLOs6UwnMiY1RVfN3tAr/W8Hov9y6BenLxc1zsYKmo0Fwvhq1mG0Uz++/On3pI+hWNHa3jCTVGVY1C45a4UivnaRg2HgPGvftRIwDrtIvThw=
+    - AWS_DEFAULT_REGION=us-east-1
+before_install:
+- pip install --upgrade pip
+install:
+- pip install .
+- pip list # list installed package versions
+script:
+- if [ "$PRIVATE_ACCESS" = 1 ] && [ "$TRAVIS_PULL_REQUEST" = "false" ]; then pytest -m "not memory_intense and not slow"; fi
+- if [ "$PRIVATE_ACCESS" != 1 ]; then pytest -m "not memory_intense and not private_access and not slow"; fi
+
+notifications:
+  slack:
+    if: |
+      branch = master AND \
+      type IN (push, api, cron)
+    on_success: change
+    on_failure: always
+    secure: "fVNvMnpY6U1NuP/tpuViqCJxzXMI/dXnMjVgIQu990RjF5U2E+Po+F8rlTdrvbgdvEa1u1zo6xtMo6spJgSiqIqByvt+0nmQkiPmMAL7/yWMva/nuc+HkOg0phCkmqyUkHKe2z5JDSaTD7GqfLCdz/xfljQ1/fkg5UA0WLGPF2ANggYr9NGlOqHYn93l7G5ILUSWQj2ak3DXCJXEL8LNXW99OobTz2gZx8ankk+tLHqYduO4e2n4IXORdGQdK6ddCsZsibWxfkQ/COu0JWVhzK8k28IO+u+pUbtslIbTIEBG2J/PXzNewACgxj7ImUZDuOahEQfAJL0FYJYxb6rmYKosWyW+hlX9jC6pyJB0G0+srJxwZd3x3qGdWmCxL9scr6pbnsHvJvyJeR99oUIzFyHxQSb3pxBm2oqimIsQC+A9B6rm8QQ2GXdvcPzKJqv4YoWZ+GFOmFSe0xZqItReLpLaE+OP17M+VNXhLbcKxOHiMx1BgwSv6oRhLJhX3Q54IRXNJAVG7HTX1M0C1BUpG4Ol4JwWoJr41ECEOtYbxATeDTFBv6wtiuj3E5C215JbmjjaASq7fQOxyu+H/1fBmEu22CcLS3tCNNrfndr31C+FmO97j7DKQkldxPCvtV1KCXxCPazcsvZXhvGxgK8bAVdnWwojB982Isz3AN0uJWE="

@@ -1,0 +1,15 @@
+LICENSE
+MANIFEST.in
+README.md
+setup.py
+brainio_base/__init__.py
+brainio_base/assemblies.py
+brainio_base/stimuli.py
+brainio_base.egg-info/PKG-INFO
+brainio_base.egg-info/SOURCES.txt
+brainio_base.egg-info/dependency_links.txt
+brainio_base.egg-info/not-zip-safe
+brainio_base.egg-info/requires.txt
+brainio_base.egg-info/top_level.txt
+tests/test_assemblies.py
+tests/test_stimuli.py

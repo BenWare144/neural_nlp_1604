@@ -1,0 +1,21 @@
+tensorflow
+numpy
+matplotlib
+seaborn
+jupyter
+nltk
+nltk_contrib@ git+https://github.com/nltk/nltk_contrib.git
+gensim
+theano
+pytest
+brain-score@ git+https://github.com/brain-score/brain-score.git@e97478f
+result_caching@ git+https://github.com/brain-score/result_caching.git
+netCDF4
+pillow
+llist
+skip-thoughts@ git+https://github.com/mschrimpf/skip-thoughts.git@c8a3cd5
+lm_1b@ git+https://github.com/mschrimpf/lm_1b.git@1ff7382
+nbsvm
+OpenNMT-py@ git+https://github.com/mschrimpf/OpenNMT-py.git@f339063
+text@ git+https://github.com/pytorch/text.git
+transformers

@@ -1,0 +1,22 @@
+Metadata-Version: 1.1
+Name: brainio-base
+Version: 0.1.0
+Summary: Base data structures for BrainIO
+Home-page: https://github.com/brain-score/brainio_base
+Author: Jon Prescott-Roy, Martin Schrimpf
+Author-email: jjpr@mit.edu, mschrimpf@mit.edu
+License: MIT license
+Description: [![Build Status](https://travis-ci.com/brain-score/brainio_base.svg?token=vqt7d2yhhpLGwHsiTZvT&branch=master)](https://travis-ci.com/brain-score/brainio_base)
+        
+        # BrainIO base
+        
+        Data structures for Assembly and StimulusSet.
+        
+Keywords: BrainIO
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7

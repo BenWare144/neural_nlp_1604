@@ -1,0 +1,17 @@
+numpy>=1.17
+brainio_base@ git+https://github.com/brain-score/brainio_base
+brainio_collection@ git+https://github.com/brain-score/brainio_collection
+scikit-learn<0.24
+h5py
+tqdm
+gitpython
+fire
+networkx
+matplotlib
+tensorflow
+result_caching@ git+https://github.com/brain-score/result_caching
+fire
+jupyter
+pybtex
+peewee
+psycopg2-binary

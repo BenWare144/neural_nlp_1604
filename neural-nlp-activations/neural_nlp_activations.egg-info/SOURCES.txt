@@ -1,0 +1,5 @@
+setup.py
+neural_nlp_activations.egg-info/PKG-INFO
+neural_nlp_activations.egg-info/SOURCES.txt
+neural_nlp_activations.egg-info/dependency_links.txt
+neural_nlp_activations.egg-info/top_level.txt
